@@ -6,19 +6,32 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'main.dart';
 
-class MyHomePage extends StatefulWidget {
+class MenuContactos extends StatefulWidget {
   // const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MenuContactos> createState() => _MenuContactosState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MenuContactosState extends State<MenuContactos> {
   Color color_interfaz = Color(0xffb4c2dd);
   int _counter = 0;
-  late List<Map> listaContactos;
+  List<String> listaContactos = [
+    "Carlos",
+    "Juan",
+    "Simon",
+    "Jeff",
+    "Haider",
+    "Episunal",
+    "Jhony",
+    "Pechita",
+    "Ronalgod",
+    "LeidyGod",
+    "Uribito OwO",
+    "Juan Mecanico"
+  ];
 
   void _incrementCounter() {
     setState(() {
@@ -41,8 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.all(25),
               height: 100,
               width: 380,
-              child: const Text(
-                "Contactos",
+              child: Text(
+                "Contactos ${listaContactos.length}",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontStyle: FontStyle.italic, fontSize: 50),
               ),
@@ -58,16 +71,74 @@ class _MyHomePageState extends State<MyHomePage> {
                * Como usar la clase container: Flutter Docs
                * https://api.flutter.dev/flutter/widgets/Container-class.html
                */
-              margin: const EdgeInsets.only(top: 5.0, bottom: 0.0),
+              margin: const EdgeInsets.only(top: 4.0, bottom: 0.0),
               padding: const EdgeInsets.all(25),
-              height: 610,
+              height: 550,
               width: 380,
               decoration: BoxDecoration(
                   color: Colors.deepPurple.shade100,
                   border: Border.all(color: Colors.black, width: 3),
                   borderRadius: BorderRadius.circular(15)),
               //Aqui en el child deben ir los contactos xd
-              child: FlutterLogo(),
+              child: ListView(
+                //cambia la direccion de scroll
+                scrollDirection: Axis.vertical,
+                children:
+                    //cada container es un contacto, ahora la pregunta es
+                    //como creo un widget por contacto xdd
+                    //La respuesta está en este list.generate
+                    List.generate(listaContactos.length, (index) {
+                  return Container(
+                    height: 100,
+                    width: 500,
+                    decoration: BoxDecoration(
+                        color: color_interfaz,
+                        border:
+                            Border.all(width: 2, color: Colors.grey.shade400),
+                        borderRadius: BorderRadius.circular(2)),
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        //container de la imagen
+                        Container(
+                          decoration: BoxDecoration(
+                              //Pendiente: mirar si dejamos el border o no
+                              border: Border.all(color: Colors.black, width: 1),
+                              borderRadius: BorderRadius.circular(5)),
+                          margin: EdgeInsets.only(left: 20),
+                          child: Image.network(
+                              "https://www.unicen.edu.ar/sites/default/files/imagenes/actualidad/2010-06/Uribe.jpg",
+                              width: 60,
+                              height: 60,
+                              fit: BoxFit.contain),
+                        ),
+
+                        //container del texto
+                        Container(
+                          margin: EdgeInsets.only(left: 25, top: 30),
+                          child:
+                              // ignore: prefer_const_constructors
+                              Text(
+                            "Nombre: ${listaContactos[index]} ",
+                            style: TextStyle(color: Colors.white, fontSize: 23),
+                            textAlign: TextAlign.left,
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }),
+              ),
+              /*
+              Imagen de prueba ke no kunda el panico
+              Image.network(
+                "https://pbs.twimg.com/ext_tw_video_thumb/1403401316681097220/pu/img/7dt7pn3SgtUvWVKS.jpg",
+                width: 200,
+                height: 300,
+                fit: BoxFit.fill,
+                
+              ),
+              */
             )
 
             /*
@@ -101,12 +172,14 @@ class _MyHomePageState extends State<MyHomePage> {
          * https://blog.logrocket.com/how-to-build-a-bottom-navigation-bar-in-flutter/#:~:text=BottomNavigationBar%20is%20a%20widget%20that,navigate%20to%20a%20given%20page.
          */
         items: const <BottomNavigationBarItem>[
+          /*
           BottomNavigationBarItem(
               icon: Icon(Icons.person,
                   color: Colors.black,
                   size: 30.0,
                   semanticLabel: 'Persona en recuadro'),
               label: "Yo"),
+*/
           BottomNavigationBarItem(
               icon: Icon(Icons.import_contacts,
                   color: Colors.black,
@@ -121,12 +194,12 @@ class _MyHomePageState extends State<MyHomePage> {
               label: "Añadir"),
         ],
       ),
-
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       //Pendiente ponerle interactividad xdd
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.build_rounded),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
