@@ -1,17 +1,21 @@
 class Contacto {
-  final String linkFoto;
-  final String nombre;
-  final String compania;
-  final String telefono1;
-  final String telefono2;
-  final String email;
+  late String linkFoto;
+  late String nombre;
+  late String compania;
+  late String telefono1;
+  late String telefono2;
+  late String email;
 
-  const Contacto({
-    required this.nombre,
-    required this.telefono1,
-    required this.telefono2,
-    required this.compania,
-    required this.email,
-    required this.linkFoto,
-  });
+  Contacto() {
+    //{int? telefono2, String? linkFoto, String? email}
+    //telefono2 ??= 00000;
+    // linkFoto ??= " ";
+    // email ??= " ";
+    this.nombre;
+    this.telefono1;
+    this.telefono2;
+    this.compania;
+    this.email;
+    this.linkFoto;
+  }
 }
