@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'Contacto.dart';
-import 'main.dart';
+import '../modelo/Contacto.dart';
+import 'package:agenda/Logica/Metodos.dart';
+
+//import 'package:agenda/Pantallas/Perfil/pantalla_perfil.dart';
+import '../main.dart';
 
 class MenuContactos extends StatefulWidget {
   // const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -19,46 +22,28 @@ class MenuContactos extends StatefulWidget {
 class _MenuContactosState extends State<MenuContactos> {
   Color color_interfaz = Color(0xffb4c2dd);
 
-  List<String> listaContactos = [
-    "Carlos",
-    "Juan",
-    "Simon",
-    "Jeff",
-    "Haider",
-    "Episunal",
-    "Jhony",
-    "Pechita",
-    "Ronalgod",
-    "LeidyGod",
-    "Uribito OwO",
-    "Juan Mecanico",
-    "AMLO"
-  ];
+  static late Contacto ContactoActual;
 
-  void irAContacto() {
+  List<Contacto> _contactos = Metodos.contactos;
+
+  void irAContacto(Contacto c) {
     //este metodo deberia tener el parametro Contacto y un navigator xd
     setState(() {
+      ContactoActual = c;
       print("Boton presionado, yendo a contacto");
+      Navigator.pushNamed(context, "/Ver");
     });
   }
 
-  void eliminarContacto(Contacto borrar) {
-    /*
-    listaContactos.forEach((element) {
-      if (element == borrar) {
-        listaContactos.remove(element);
-      }
-    });
-    Testear estos metodos mañana xd
-    */
-  }
-
-  void agregarContacto(Contacto agregar) {
-    //listaContactos.add(agregar);
-  }
-
-  void EditarContacto(Contacto editable) {
-    //Terminar este metodo mañana
+  void cambiarPantalla(int tabIndex) {
+    switch (tabIndex) {
+      case 0:
+        Navigator.pushNamed(context, "/");
+        break;
+      case 1:
+        Navigator.pushNamed(context, "/Crear");
+        break;
+    }
   }
 
   void _mostrarAjustes(BuildContext context) {
@@ -93,18 +78,24 @@ class _MenuContactosState extends State<MenuContactos> {
     return Scaffold(
       backgroundColor: Colors.yellow.shade50,
       //appBar: AppBar(),
+      appBar: AppBar(title: Text('Contactos ${_contactos.length}')),
+
+      // actions: <Widget>
+      // ],
+
       body: Center(
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             //En este primer container va la cabecera de la página
+            /*
             Container(
               margin: const EdgeInsets.only(top: 50.0),
               padding: const EdgeInsets.all(25),
               height: 100,
               width: 380,
               child: Text(
-                "Contactos ${listaContactos.length}",
+                "Contactos ${_contactos.length}",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontStyle: FontStyle.italic, fontSize: 50),
               ),
@@ -113,6 +104,7 @@ class _MenuContactosState extends State<MenuContactos> {
                   border: Border.all(color: Colors.black, width: 2),
                   borderRadius: BorderRadius.circular(10)),
             ),
+            */
 
             //En el segundo container la idea es poner una list view con todos los contactos
             Container(
@@ -137,7 +129,7 @@ class _MenuContactosState extends State<MenuContactos> {
                     //como creo un widget por contacto xdd
                     //La respuesta está en este list.generate
                     // DOC: https://docs.flutter.dev/cookbook/lists/grid-lists
-                    List.generate(listaContactos.length, (index) {
+                    List.generate(_contactos.length, (index) {
                   return Container(
                     height: 100,
                     width: 500,
@@ -156,11 +148,8 @@ class _MenuContactosState extends State<MenuContactos> {
                               border: Border.all(color: Colors.black, width: 1),
                               borderRadius: BorderRadius.circular(5)),
                           margin: EdgeInsets.only(left: 20),
-                          child: Image.network(
-                              "https://www.unicen.edu.ar/sites/default/files/imagenes/actualidad/2010-06/Uribe.jpg",
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.contain),
+                          child: Image.network("${_contactos[index].linkFoto}",
+                              width: 60, height: 60, fit: BoxFit.contain),
                         ),
 
                         //container del texto
@@ -169,9 +158,9 @@ class _MenuContactosState extends State<MenuContactos> {
                             child:
                                 // ignore: prefer_const_constructors
                                 InkWell(
-                                    onTap: () => irAContacto(),
+                                    onTap: () => irAContacto(_contactos[index]),
                                     child: Text(
-                                      "Nombre: ${listaContactos[index]} ",
+                                      "${_contactos[index].nombre}",
                                       // ignore: prefer_const_constructors
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 23),
@@ -246,6 +235,7 @@ class _MenuContactosState extends State<MenuContactos> {
                   semanticLabel: 'Añadir a contacto'),
               label: "Añadir"),
         ],
+        onTap: cambiarPantalla,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       //Pendiente ponerle interactividad xdd

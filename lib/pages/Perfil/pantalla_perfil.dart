@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:agenda/widget/appbar_widget.dart';
 import 'package:agenda/widget/profile_widget.dart';
 import 'package:agenda/widget/button._widget.dart';
-import 'package:agenda/pruebas/pruebasContactos.dart';
 import 'package:agenda/modelo/Contacto.dart';
-import 'package:agenda/Pantallas/Perfil/pantalla_editar.dart';
+import 'package:agenda/pages/Perfil/pantalla_editar.dart';
 
 class PaginaPerfil extends StatefulWidget {
   @override
@@ -12,9 +11,16 @@ class PaginaPerfil extends StatefulWidget {
 }
 
 class _PerfilEstado extends State<PaginaPerfil> {
+  final contacto = Contacto(
+    "Juan Simon",
+    312341341,
+    12341234214,
+    "Claro",
+    "hola@hotmail.com",
+    "https://www.asofiduciarias.org.co/wp-content/uploads/2018/06/sin-foto.png",
+  );
   @override
   Widget build(BuildContext context) {
-    final contacto = PreferenciasUsuario.contacto;
     return Scaffold(
       appBar: buildAppBar(context),
       body: ListView(
@@ -76,7 +82,7 @@ class _PerfilEstado extends State<PaginaPerfil> {
             height: 6,
           ),
           Text(
-            contacto.telefono1,
+            contacto.telefono1.toString(),
             style: const TextStyle(
               height: 1.4,
               fontSize: 16,
@@ -96,7 +102,7 @@ class _PerfilEstado extends State<PaginaPerfil> {
             height: 6,
           ),
           Text(
-            contacto.telefono2,
+            contacto.telefono2.toString(),
             style: const TextStyle(
               height: 1.4,
               fontSize: 16,
