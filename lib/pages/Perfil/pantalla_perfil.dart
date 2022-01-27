@@ -1,3 +1,4 @@
+import 'package:agenda/Logica/Metodos.dart';
 import 'package:flutter/material.dart';
 import 'package:agenda/widget/appbar_widget.dart';
 import 'package:agenda/widget/profile_widget.dart';
@@ -11,17 +12,12 @@ class PaginaPerfil extends StatefulWidget {
 }
 
 class _PerfilEstado extends State<PaginaPerfil> {
-  final contacto = Contacto(
-    "Juan Simon",
-    312341341,
-    12341234214,
-    "Claro",
-    "hola@hotmail.com",
-    "https://www.asofiduciarias.org.co/wp-content/uploads/2018/06/sin-foto.png",
-  );
+  Color color_interfaz = Color(0xff9AD0EC);
+  dynamic contacto = Metodos.ContactoActual;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: color_interfaz,
       appBar: buildAppBar(context),
       body: ListView(
         physics: const BouncingScrollPhysics(),

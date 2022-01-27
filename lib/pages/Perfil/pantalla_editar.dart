@@ -15,6 +15,11 @@ class EditarPerfil extends StatefulWidget {
 }
 
 class _EditarPerfilEstado extends State<EditarPerfil> {
+  Color color_interfaz = Color(0xff9AD0EC);
+  Color color_interfazGrueso = Color(0xff1572A1);
+  Color color_letra = Color(0xffEFDAD7);
+  Color color_fondo = Color(0xffE3BEC6);
+
   Contacto contacto = Metodos.ContactoActual;
 
   late TextEditingController controllernombreCompleto;
@@ -34,6 +39,7 @@ class _EditarPerfilEstado extends State<EditarPerfil> {
         TextEditingController(text: contacto.telefono2.toString());
     controllercompania = TextEditingController(text: contacto.compania);
     return Scaffold(
+      backgroundColor: color_interfaz,
       appBar: buildAppBar(context),
       body: ListView(
         physics: const BouncingScrollPhysics(),
@@ -52,19 +58,19 @@ class _EditarPerfilEstado extends State<EditarPerfil> {
                 "Nombre completo",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 10),
               TextField(
-                controller: controllernombreCompleto,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                ),
-              ),
+                  controller: controllernombreCompleto,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  )),
+              const SizedBox(height: 10),
               Text(
                 "Email:",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 10),
               TextField(
                 controller: controlleremail,
                 decoration: InputDecoration(
@@ -72,11 +78,12 @@ class _EditarPerfilEstado extends State<EditarPerfil> {
                       borderRadius: BorderRadius.circular(12)),
                 ),
               ),
+              const SizedBox(height: 10),
               Text(
                 "Teléfono 1:",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 10),
               TextField(
                 controller: controllertelefono1,
                 decoration: InputDecoration(
@@ -84,11 +91,12 @@ class _EditarPerfilEstado extends State<EditarPerfil> {
                       borderRadius: BorderRadius.circular(12)),
                 ),
               ),
+              const SizedBox(height: 10),
               Text(
                 "Teléfono 2:",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 10),
               TextField(
                 controller: controllertelefono2,
                 decoration: InputDecoration(
@@ -96,11 +104,12 @@ class _EditarPerfilEstado extends State<EditarPerfil> {
                       borderRadius: BorderRadius.circular(12)),
                 ),
               ),
+              const SizedBox(height: 10),
               Text(
                 "Compañía: ",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 10),
               TextField(
                 controller: controllercompania,
                 decoration: InputDecoration(
@@ -177,8 +186,9 @@ class _EditarPerfilEstado extends State<EditarPerfil> {
         print("Esta va para juan");
         //Crear contacto / editarlo
         //Metodos.EditarContacto(editable)
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => PaginaPerfil()),
-        );
+        Navigator.pushReplacementNamed(context, "/");
+        //Navigator.of(context).push(
+        //  MaterialPageRoute(builder: (context) => PaginaPerfil()),
+        //);
       });
 }
