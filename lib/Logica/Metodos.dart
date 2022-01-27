@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import '../modelo/Contacto.dart';
 
 class Metodos {
+  static late Contacto ContactoActual;
   static List<Contacto> contactos = [
     Contacto(
       "Juan Cortes",
@@ -51,11 +48,21 @@ class Metodos {
       */
   }
 
-  static void agregarContacto(Contacto agregar) {
+  static dynamic agregarContacto() {
     // _contactos.add(agregar);
   }
 
-  static void EditarContacto(Contacto editable) {
-    //Terminar este metodo mañana
+//aqui en editar contacto lo que hacemos es modificar el contacto, sacarlo de la lista y
+//meterlo de nuevo XDDD
+  static void EditarContacto(String nombreCompleto, String email, int telefono1,
+      int telefono2, String compania, Contacto editable) {
+    editable.Nombre = nombreCompleto;
+    editable.Compania = compania;
+    editable.telefono1 = telefono1;
+    editable.telefono2 = telefono2;
+    editable.email = email;
+
+    contactos.remove(editable);
+    contactos.add(editable);
   }
 }
