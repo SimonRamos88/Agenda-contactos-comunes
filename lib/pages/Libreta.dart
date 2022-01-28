@@ -22,15 +22,12 @@ class MenuContactos extends StatefulWidget {
 class _MenuContactosState extends State<MenuContactos> {
   Color color_interfaz = Color(0xffb4c2dd);
 
-  static late Contacto ContactoActual;
-
   List<Contacto> _contactos = Metodos.contactos;
 
   void irAContacto(Contacto c) {
     //este metodo deberia tener el parametro Contacto y un navigator xd
     setState(() {
-      ContactoActual = c;
-      print("Boton presionado, yendo a contacto");
+      Metodos.contactoActual = c;
       Navigator.pushNamed(context, "/Ver");
     });
   }
@@ -130,8 +127,9 @@ class _MenuContactosState extends State<MenuContactos> {
                     //La respuesta está en este list.generate
                     // DOC: https://docs.flutter.dev/cookbook/lists/grid-lists
                     List.generate(_contactos.length, (index) {
-                  return Container(
-                    height: 100,
+                  return 
+                  Container(
+                    height: 80,
                     width: 500,
                     decoration: BoxDecoration(
                         color: color_interfaz,
@@ -142,19 +140,22 @@ class _MenuContactosState extends State<MenuContactos> {
                       scrollDirection: Axis.horizontal,
                       children: [
                         //container de la imagen
-                        Container(
-                          decoration: BoxDecoration(
-                              //Pendiente: mirar si dejamos el border o no
-                              border: Border.all(color: Colors.black, width: 1),
-                              borderRadius: BorderRadius.circular(5)),
-                          margin: EdgeInsets.only(left: 20),
-                          child: Image.network("${_contactos[index].linkFoto}",
-                              width: 60, height: 60, fit: BoxFit.contain),
+                        ClipOval(
+                          child: Material(
+                            color: Colors.transparent,
+                            //borderRadius: BorderRadius.circular(5)),
+                            //margin: EdgeInsets.only(left: 20),
+                            child: Ink.image(
+                              image: NetworkImage(_contactos[index].linkFoto),
+                              width: 60, 
+                              height: 60, 
+                              fit: BoxFit.cover
+                              ),
                         ),
-
+                        ),
                         //container del texto
                         Container(
-                            margin: EdgeInsets.only(left: 25, top: 30),
+                            margin: EdgeInsets.only(left: 25, top:25),
                             child:
                                 // ignore: prefer_const_constructors
                                 InkWell(
@@ -165,10 +166,9 @@ class _MenuContactosState extends State<MenuContactos> {
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 23),
                                       textAlign: TextAlign.left,
-                                    )))
+                                    ))),
                       ],
-                    ),
-                  );
+                  ));
                 }),
               ),
               /*
