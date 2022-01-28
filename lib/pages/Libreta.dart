@@ -20,17 +20,21 @@ class MenuContactos extends StatefulWidget {
 }
 
 class _MenuContactosState extends State<MenuContactos> {
-  Color color_interfaz = Color(0xffb4c2dd);
-
-  static late Contacto ContactoActual;
+  Color color_interfaz = Color(0xff9AD0EC);
+  Color color_interfazGrueso = Color(0xff1572A1);
+  Color color_letra = Color(0xffEFDAD7);
+  Color color_fondo = Color(0xffE3BEC6);
 
   List<Contacto> _contactos = Metodos.contactos;
 
   void irAContacto(Contacto c) {
     //este metodo deberia tener el parametro Contacto y un navigator xd
     setState(() {
-      ContactoActual = c;
+      //  Metodos.contactoActual = c;
+
+      Metodos.contactoActual = c;
       print("Boton presionado, yendo a contacto");
+
       Navigator.pushNamed(context, "/Ver");
     });
   }
@@ -38,7 +42,7 @@ class _MenuContactosState extends State<MenuContactos> {
   void cambiarPantalla(int tabIndex) {
     switch (tabIndex) {
       case 0:
-        Navigator.pushNamed(context, "/");
+        //Navigator.pushNamed(context, "/");
         break;
       case 1:
         Navigator.pushNamed(context, "/Crear");
@@ -78,7 +82,12 @@ class _MenuContactosState extends State<MenuContactos> {
     return Scaffold(
       backgroundColor: Colors.yellow.shade50,
       //appBar: AppBar(),
-      appBar: AppBar(title: Text('Contactos ${_contactos.length}')),
+      appBar: AppBar(
+        title: Text('Contactos Actuales:  ${_contactos.length}'),
+        shadowColor: Colors.deepOrange,
+        backgroundColor: color_interfazGrueso,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      ),
 
       // actions: <Widget>
       // ],
@@ -112,14 +121,14 @@ class _MenuContactosState extends State<MenuContactos> {
                * Como usar la clase container: Flutter Docs
                * https://api.flutter.dev/flutter/widgets/Container-class.html
                */
-              margin: const EdgeInsets.only(top: 4.0, bottom: 0.0),
+              margin: const EdgeInsets.only(top: 0.0, bottom: 0.0),
               padding: const EdgeInsets.all(25),
-              height: 550,
-              width: 380,
+              height: 690,
+              width: 392,
               decoration: BoxDecoration(
-                  color: Colors.deepPurple.shade100,
-                  border: Border.all(color: Colors.black, width: 3),
-                  borderRadius: BorderRadius.circular(15)),
+                  // color: Colors.deepPurple.shade100,
+                  // border: Border.all(color: Colors.yellow.shade300, width: 1),
+                  borderRadius: BorderRadius.circular(2)),
               //Aqui en el child deben ir los contactos xd
               child: ListView(
                 //cambia la direccion de scroll
@@ -131,44 +140,59 @@ class _MenuContactosState extends State<MenuContactos> {
                     // DOC: https://docs.flutter.dev/cookbook/lists/grid-lists
                     List.generate(_contactos.length, (index) {
                   return Container(
-                    height: 100,
-                    width: 500,
-                    decoration: BoxDecoration(
-                        color: color_interfaz,
-                        border:
-                            Border.all(width: 2, color: Colors.grey.shade400),
-                        borderRadius: BorderRadius.circular(2)),
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        //container de la imagen
+                      height: 80,
+                      width: 500,
+                      margin: EdgeInsets.only(top: 5.0),
+                      decoration: BoxDecoration(
+                          color: color_interfaz,
+                          border: Border.all(width: 2, color: Colors.amber),
+                          borderRadius: BorderRadius.circular(2)),
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          //container de la imagen
+
+                          ClipOval(
+                            child: Material(
+                              color: Colors.transparent,
+                              //borderRadius: BorderRadius.circular(5)),
+                              //margin: EdgeInsets.only(left: 20),
+                              child: Ink.image(
+                                  image:
+                                      NetworkImage(_contactos[index].linkFoto),
+                                  width: 60,
+                                  height: 60,
+                                  fit: BoxFit.cover),
+                            ),
+
+/*
                         Container(
                           decoration: BoxDecoration(
                               //Pendiente: mirar si dejamos el border o no
-                              border: Border.all(color: Colors.black, width: 1),
-                              borderRadius: BorderRadius.circular(5)),
-                          margin: EdgeInsets.only(left: 20),
+                              //border: Border.all(color: Colors.black, width: 1),
+                              borderRadius: BorderRadius.circular(3)),
+                          margin: EdgeInsets.only(left: 10),
                           child: Image.network("${_contactos[index].linkFoto}",
-                              width: 60, height: 60, fit: BoxFit.contain),
-                        ),
-
-                        //container del texto
-                        Container(
-                            margin: EdgeInsets.only(left: 25, top: 30),
-                            child:
-                                // ignore: prefer_const_constructors
-                                InkWell(
-                                    onTap: () => irAContacto(_contactos[index]),
-                                    child: Text(
-                                      "${_contactos[index].nombre}",
-                                      // ignore: prefer_const_constructors
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 23),
-                                      textAlign: TextAlign.left,
-                                    )))
-                      ],
-                    ),
-                  );
+                              width: 60, height: 20, fit: BoxFit.scaleDown),
+*/
+                          ),
+                          //container del texto
+                          Container(
+                              margin: EdgeInsets.only(left: 25, top: 25),
+                              child:
+                                  // ignore: prefer_const_constructors
+                                  InkWell(
+                                      onTap: () =>
+                                          irAContacto(_contactos[index]),
+                                      child: Text(
+                                        "${_contactos[index].nombre}",
+                                        // ignore: prefer_const_constructors
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 23),
+                                        textAlign: TextAlign.left,
+                                      ))),
+                        ],
+                      ));
                 }),
               ),
               /*
