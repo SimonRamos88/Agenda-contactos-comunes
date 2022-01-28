@@ -1,3 +1,4 @@
+import 'package:agenda/Logica/Metodos.dart';
 import 'package:flutter/material.dart';
 import 'package:agenda/widget/appbar_widget.dart';
 import 'package:agenda/widget/profile_widget.dart';
@@ -13,11 +14,15 @@ class PaginaPerfil extends StatefulWidget {
 }
 
 class _PerfilEstado extends State<PaginaPerfil> {
-  final contactoActual = Metodos.contactoActual;
+  // final contactoActual = Metodos.contactoActual;
+
+  Color color_interfaz = Color(0xff9AD0EC);
+  dynamic contactoActual = Metodos.contactoActual;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: color_interfaz,
       appBar: buildAppBar(context),
       body: ListView(
         physics: const BouncingScrollPhysics(),

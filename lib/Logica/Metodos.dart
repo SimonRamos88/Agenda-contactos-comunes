@@ -1,10 +1,49 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
+// ignore: file_names
+// ignore: file_names
+// ignore_for_file: non_constant_identifier_names, file_names
+
 import '../modelo/Contacto.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
+
+class AlmacenamientoAndroid {
+  //Creamos  la clase
+  //Este metodo futuro nos trae el path de la carpeta documentos
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+//con el path, creamos el archivo deseado
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File("$path/contactos.txt");
+  }
+
+  //Ahora lo leemos
+  Future<int> readCounter() async {
+    try {
+      final file = await _localFile;
+      //Leemos el archivo como una String XDD
+      String contents = await file.readAsString();
+      return int.parse(contents);
+    } catch (e) {
+      return 0;
+    }
+  }
+
+//terminar de buscar para guardar datos en andrir
+  Future<File> writeCounter(String datos) async {
+    final file = await _localFile;
+
+    return file.writeAsString(datos);
+  }
+}
 
 class Metodos {
+  static late Contacto ContactoActual;
   static List<Contacto> contactos = [
     Contacto(
       "Juan Cortes",
@@ -50,11 +89,21 @@ class Metodos {
     }
   }
 
-  static void agregarContacto(Contacto agregar) {
+  static dynamic agregarContacto() {
     // _contactos.add(agregar);
   }
 
-  static void EditarContacto(Contacto editable) {
-    //Terminar este metodo mañana
+//aqui en editar contacto lo que hacemos es modificar el contacto, sacarlo de la lista y
+//meterlo de nuevo XDDD
+  static void EditarContacto(String nombreCompleto, String email, int telefono1,
+      int telefono2, String compania, Contacto editable) {
+    editable.Nombre = nombreCompleto;
+    editable.Compania = compania;
+    editable.telefono1 = telefono1;
+    editable.telefono2 = telefono2;
+    editable.email = email;
+    ContactoActual = editable;
+    contactos.remove(editable);
+    contactos.add(editable);
   }
 }
