@@ -51,7 +51,11 @@ class Metodos {
       */
   }
 
-  static void agregarContacto(Contacto agregar) {
+  static void CrearContacto(String nombre, int tef1, int tef2, String comp, String email, String linkfoto) {
+
+    Contacto nuevo = Contacto(nombre, tef1, tef2, comp, email, linkfoto);
+    contactos.add(nuevo);
+    print(nuevo.Nombre);
     // _contactos.add(agregar);
   }
 

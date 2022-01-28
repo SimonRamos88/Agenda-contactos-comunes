@@ -2,7 +2,7 @@
 class Contacto {
   late String linkFoto;
   late String nombre;
-  late String apellido;
+  String apellido = "random";
   late String compania;
   late int telefono1;
   late int telefono2;
