@@ -18,9 +18,7 @@ class MyApp extends StatelessWidget {
           textTheme: const TextTheme(button: TextStyle(color: Colors.black)),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
               selectedLabelStyle: TextStyle(color: Colors.black),
-              unselectedLabelStyle: TextStyle(color: Colors.black)
-          )
-      ),
+              unselectedLabelStyle: TextStyle(color: Colors.black))),
       home: PrincipalPage(),
     );
   }
@@ -29,14 +27,12 @@ class MyApp extends StatelessWidget {
 class PrincipalPage extends StatefulWidget {
   PrincipalPage({Key? key}) : super(key: key);
   String tittle = "Crear contacto";
-  
 
   @override
   State<PrincipalPage> createState() => _PrincipalPageState();
 }
 
 class _PrincipalPageState extends State<PrincipalPage> {
-
   String nombre = "";
   String apellido = "";
   String compania = "";
@@ -47,14 +43,13 @@ class _PrincipalPageState extends State<PrincipalPage> {
 
   final keyform = GlobalKey<FormState>();
 
-  subir(){
+  subir() {
     setState(() => _subido = true);
     if (keyform.currentState!.validate()) {
-        keyform.currentState!.save();
-        //widget.onSubmit(_name);
-      } 
+      keyform.currentState!.save();
+      //widget.onSubmit(_name);
+    }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -67,171 +62,165 @@ class _PrincipalPageState extends State<PrincipalPage> {
           child: Container(
               color: const Color(0xffB4C2DD),
               padding: const EdgeInsets.all(20),
-              child: Form( 
+              child: Form(
                 key: keyform,
                 child: ListView(
-                  
                   children: <Widget>[
                     Row(
                       children: [
                         const Icon(Icons.person, size: 150),
                         Expanded(
                             child: Column(
-                                mainAxisAlignment:MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
-                                  TextFormField(
-                                      initialValue: "",
-                                      validator:(text){ 
-                                      if(nombre.isEmpty){
-                                        print("Soy el validatorV2");
-                                        return "Ingrese un valor";
-                                      }
-                                    },
-                                      decoration: InputDecoration(
-                                        labelText: "Nombre",
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(12)),
-                                        hintStyle: TextStyle(color: Colors.white)
-                                        ),
-
-                                      onChanged: (text) => setState(() => nombre = text),
-                                      autovalidateMode: AutovalidateMode.onUserInteraction 
-                                        //_subido ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
-                                  ),
-                                  
-                                  const SizedBox(height: 50),
-                                  TextFormField(
-                                    initialValue: "",
-                                    validator: (text){ 
-                                      if(apellido.isEmpty){
-                                        print("Soy el validatorV2");
-                                        return "Ingrese un valor";
-                                      }
-                                    },
-                                    decoration: InputDecoration(                                   
-                                      labelText: "Apellido",
+                              TextFormField(
+                                  initialValue: "",
+                                  validator: (text) {
+                                    if (nombre.isEmpty) {
+                                      print("Soy el validatorV2");
+                                      return "Ingrese un valor";
+                                    }
+                                  },
+                                  decoration: InputDecoration(
+                                      labelText: "Nombre",
                                       border: OutlineInputBorder(
-                                        borderRadius:
-                                          BorderRadius.circular(12)
-                                      ),
-                                      hintStyle: TextStyle(color: Colors.white),
-                                    ),
-
-                                    onChanged: (text) => setState(() => apellido = text),
-                                    autovalidateMode: AutovalidateMode.onUserInteraction
-                                        // _subido ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      hintStyle:
+                                          TextStyle(color: Colors.white)),
+                                  onChanged: (text) =>
+                                      setState(() => nombre = text),
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction
+                                  //_subido ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
                                   ),
-                                ]
-                            )
-                        )
+                              const SizedBox(height: 50),
+                              TextFormField(
+                                  initialValue: "",
+                                  validator: (text) {
+                                    if (apellido.isEmpty) {
+                                      print("Soy el validatorV2");
+                                      return "Ingrese un valor";
+                                    }
+                                  },
+                                  decoration: InputDecoration(
+                                    labelText: "Apellido",
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    hintStyle: TextStyle(color: Colors.white),
+                                  ),
+                                  onChanged: (text) =>
+                                      setState(() => apellido = text),
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction
+                                  // _subido ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
+                                  ),
+                            ]))
                       ],
                     ),
                     const SizedBox(height: 50),
                     TextFormField(
-                      initialValue: "",
-                      validator:(text){ 
-                        if(compania.isEmpty){
-                          print("Soy el validatorV2");
-                          return "Ingrese un valor";
-                        }
-                      },
-                      decoration: InputDecoration(
-                        labelText: "Compañía",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12)
+                        initialValue: "",
+                        validator: (text) {
+                          if (compania.isEmpty) {
+                            print("Soy el validatorV2");
+                            return "Ingrese un valor";
+                          }
+                        },
+                        decoration: InputDecoration(
+                          labelText: "Compañía",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                          hintStyle: TextStyle(color: Colors.white),
                         ),
-                        hintStyle: TextStyle(color: Colors.white),
-                      ),
-
-                      onChanged: (text) => setState(() => compania = text),
-                      autovalidateMode: AutovalidateMode.onUserInteraction
-                         //_subido ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
-                    ),
+                        onChanged: (text) => setState(() => compania = text),
+                        autovalidateMode: AutovalidateMode.onUserInteraction
+                        //_subido ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
+                        ),
                     const SizedBox(height: 30),
                     TextFormField(
-                      initialValue: "",
-                      validator:(text){ 
-                        if(num1==0){
-                          print("Soy el validatorV2");
-                          return "Valor diferente a 0";
-                        }
-                      },
-                      keyboardType:TextInputType.phone ,
-                      decoration: InputDecoration(
-                        labelText: "Numero1",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12)
+                        initialValue: "",
+                        validator: (text) {
+                          if (num1 == 0) {
+                            print("Soy el validatorV2");
+                            return "Valor diferente a 0";
+                          }
+                        },
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          labelText: "Numero1",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                          hintStyle: TextStyle(color: Colors.white),
                         ),
-                        hintStyle: TextStyle(color: Colors.white),
-                      ),
-
-                      onChanged: (num) => setState(() => num.isNotEmpty ? num1= int.parse(num) : num1 = 0),
-                      autovalidateMode: AutovalidateMode.onUserInteraction 
-                         //_subido ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
-                    ),
+                        onChanged: (num) => setState(() =>
+                            num.isNotEmpty ? num1 = int.parse(num) : num1 = 0),
+                        autovalidateMode: AutovalidateMode.onUserInteraction
+                        //_subido ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
+                        ),
                     const SizedBox(height: 30),
                     TextFormField(
-                      initialValue: "",
-                      validator:(text){ 
-                        if(num2==0){
-                          print("Soy el validatorV2");
-                          return "Valor diferente a 0";
-                        }
-                      },
-                      keyboardType:TextInputType.phone ,
-                      decoration: InputDecoration(
-                        labelText: "Numero2",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12)
+                        initialValue: "",
+                        validator: (text) {
+                          if (num2 == 0) {
+                            print("Soy el validatorV2");
+                            return "Valor diferente a 0";
+                          }
+                        },
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          labelText: "Numero2",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                          hintStyle: TextStyle(color: Colors.white),
                         ),
-                        hintStyle: TextStyle(color: Colors.white),
-                      ),
-
-                      onChanged: (num) => setState(() => num.isNotEmpty? num2= int.parse(num) : num2 = 0 ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction 
-                        // _subido ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,                     
-                    ),
+                        onChanged: (num) => setState(() =>
+                            num.isNotEmpty ? num2 = int.parse(num) : num2 = 0),
+                        autovalidateMode: AutovalidateMode.onUserInteraction
+                        // _subido ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
+                        ),
                   ],
                 ),
-
-              )
-          )
-      ),
+              ))),
 
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.import_contacts, color: Colors.black),
-            label:"Contactos " //Text("Contactos", style: TextStyle(color:Colors.black) )
-          ),
+              icon: Icon(Icons.import_contacts, color: Colors.black),
+              label:
+                  "Contactos " //Text("Contactos", style: TextStyle(color:Colors.black) )
+              ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_add, color: Colors.black),
-            label: "Añadir"
-          )
+              icon: Icon(Icons.person_add, color: Colors.black),
+              label: "Añadir")
         ],
-        onTap: (int tapIndex){tapIndex == 0? Navigator.pushNamed(context, "/") : null ;},
+        onTap: (int tapIndex) {
+          tapIndex == 0 ? Navigator.pushNamed(context, "/") : null;
+        },
       ),
-   
-      floatingActionButton: FloatingActionButton(       
+
+      floatingActionButton: FloatingActionButton(
         //Falta crear el contacto, y ponerlo en este metodo
-        onPressed:() {
-          if(nombre.isNotEmpty && apellido.isNotEmpty && compania.isNotEmpty){
+        onPressed: () {
+          if (nombre.isNotEmpty && apellido.isNotEmpty && compania.isNotEmpty) {
             subir();
             print("Entro");
-            Metodos.CrearContacto(nombre, num1, num2, compania, apellido, "slakla");
+            Metodos.CrearContacto(
+                nombre, num1, num2, compania, apellido, "slakla");
             print(Metodos.contactos);
             Navigator.pushNamed(context, "/");
-          }else{
+          } else {
             print("No entro");
             //return null;
           }
-        } ,
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), 
+      ),
 
-              ))),
-
+      /*
       bottomNavigationBar: BottomNavigationBar(items: const [
         BottomNavigationBarItem(
             backgroundColor: Colors.pink,
@@ -245,6 +234,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
             //activeIcon: Icon(Icons.book, color: Colors.black),
             label: "Añadir")
       ]),
+      */
       //floatingActionButton: FloatingActionButton(
       //Falta crear el contacto, y ponerlo en este metodo
 
@@ -254,7 +244,6 @@ class _PrincipalPageState extends State<PrincipalPage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
 */
-
     );
   }
 }
