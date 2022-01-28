@@ -161,12 +161,15 @@ class _PrincipalPageState extends State<PrincipalPage> {
             //activeIcon: Icon(Icons.book, color: Colors.black),
             label: "Añadir")
       ]),
-      floatingActionButton: FloatingActionButton(
-        //Falta crear el contacto, y ponerlo en este metodo
+      //floatingActionButton: FloatingActionButton(
+      //Falta crear el contacto, y ponerlo en este metodo
+
+/*
         onPressed: Metodos.agregarContacto(),
         tooltip: 'Agregar',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+*/
     );
   }
 }

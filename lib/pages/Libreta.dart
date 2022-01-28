@@ -30,8 +30,11 @@ class _MenuContactosState extends State<MenuContactos> {
   void irAContacto(Contacto c) {
     //este metodo deberia tener el parametro Contacto y un navigator xd
     setState(() {
-      Metodos.ContactoActual = c;
+      //  Metodos.contactoActual = c;
+
+      Metodos.contactoActual = c;
       print("Boton presionado, yendo a contacto");
+
       Navigator.pushNamed(context, "/Ver");
     });
   }
@@ -137,17 +140,32 @@ class _MenuContactosState extends State<MenuContactos> {
                     // DOC: https://docs.flutter.dev/cookbook/lists/grid-lists
                     List.generate(_contactos.length, (index) {
                   return Container(
-                    height: 100,
-                    width: 500,
-                    margin: EdgeInsets.only(top: 5.0),
-                    decoration: BoxDecoration(
-                        color: color_interfaz,
-                        border: Border.all(width: 2, color: Colors.amber),
-                        borderRadius: BorderRadius.circular(2)),
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        //container de la imagen
+                      height: 80,
+                      width: 500,
+                      margin: EdgeInsets.only(top: 5.0),
+                      decoration: BoxDecoration(
+                          color: color_interfaz,
+                          border: Border.all(width: 2, color: Colors.amber),
+                          borderRadius: BorderRadius.circular(2)),
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          //container de la imagen
+
+                          ClipOval(
+                            child: Material(
+                              color: Colors.transparent,
+                              //borderRadius: BorderRadius.circular(5)),
+                              //margin: EdgeInsets.only(left: 20),
+                              child: Ink.image(
+                                  image:
+                                      NetworkImage(_contactos[index].linkFoto),
+                                  width: 60,
+                                  height: 60,
+                                  fit: BoxFit.cover),
+                            ),
+
+/*
                         Container(
                           decoration: BoxDecoration(
                               //Pendiente: mirar si dejamos el border o no
@@ -156,25 +174,25 @@ class _MenuContactosState extends State<MenuContactos> {
                           margin: EdgeInsets.only(left: 10),
                           child: Image.network("${_contactos[index].linkFoto}",
                               width: 60, height: 20, fit: BoxFit.scaleDown),
-                        ),
-
-                        //container del texto
-                        Container(
-                            margin: EdgeInsets.only(left: 25, top: 30),
-                            child:
-                                // ignore: prefer_const_constructors
-                                InkWell(
-                                    onTap: () => irAContacto(_contactos[index]),
-                                    child: Text(
-                                      "${_contactos[index].nombre}",
-                                      // ignore: prefer_const_constructors
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 23),
-                                      textAlign: TextAlign.left,
-                                    )))
-                      ],
-                    ),
-                  );
+*/
+                          ),
+                          //container del texto
+                          Container(
+                              margin: EdgeInsets.only(left: 25, top: 25),
+                              child:
+                                  // ignore: prefer_const_constructors
+                                  InkWell(
+                                      onTap: () =>
+                                          irAContacto(_contactos[index]),
+                                      child: Text(
+                                        "${_contactos[index].nombre}",
+                                        // ignore: prefer_const_constructors
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 23),
+                                        textAlign: TextAlign.left,
+                                      ))),
+                        ],
+                      ));
                 }),
               ),
               /*

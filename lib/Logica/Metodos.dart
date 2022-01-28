@@ -79,15 +79,14 @@ class Metodos {
     ),
   ];
 
+  static late Contacto contactoActual;
+
   static void eliminarContacto(Contacto borrar) {
-    /*
-      listaContactos.forEach((element) {
-        if (element == borrar) {
-          listaContactos.remove(element);
-        }
-      });
-      Testear estos metodos mañana xd
-      */
+    for (var i = contactos.length - 1; i >= 0; i--) {
+      if (contactos[i] == borrar) {
+        contactos.remove(contactos[i]);
+      }
+    }
   }
 
   static dynamic agregarContacto() {

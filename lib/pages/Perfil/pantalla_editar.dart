@@ -47,7 +47,6 @@ class _EditarPerfilEstado extends State<EditarPerfil> {
         children: [
           ProfileWidget(
             imagePath: contacto.linkFoto,
-            isEdit: true,
             onClicked: () async {},
           ),
           const SizedBox(height: 24),

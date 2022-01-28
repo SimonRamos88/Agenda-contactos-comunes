@@ -5,6 +5,8 @@ import 'package:agenda/widget/profile_widget.dart';
 import 'package:agenda/widget/button._widget.dart';
 import 'package:agenda/modelo/Contacto.dart';
 import 'package:agenda/pages/Perfil/pantalla_editar.dart';
+import 'package:agenda/Logica/Metodos.dart';
+import 'package:agenda/pages/Libreta.dart';
 
 class PaginaPerfil extends StatefulWidget {
   @override
@@ -12,8 +14,11 @@ class PaginaPerfil extends StatefulWidget {
 }
 
 class _PerfilEstado extends State<PaginaPerfil> {
+  // final contactoActual = Metodos.contactoActual;
+
   Color color_interfaz = Color(0xff9AD0EC);
-  dynamic contacto = Metodos.ContactoActual;
+  dynamic contactoActual = Metodos.contactoActual;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,15 +28,17 @@ class _PerfilEstado extends State<PaginaPerfil> {
         physics: const BouncingScrollPhysics(),
         children: [
           ProfileWidget(
-            imagePath: contacto.linkFoto,
+            imagePath: contactoActual.linkFoto,
             onClicked: () async {},
           ),
           const SizedBox(height: 24),
-          construirNombre(contacto),
+          construirNombre(contactoActual),
           const SizedBox(height: 24),
           Center(child: editarContacto()),
+          const SizedBox(height: 16),
+          Center(child: eliminarContacto()),
           const SizedBox(height: 24),
-          construirInformacion(contacto),
+          construirInformacion(contactoActual),
         ],
       ),
     );
@@ -59,9 +66,14 @@ class _PerfilEstado extends State<PaginaPerfil> {
   Widget editarContacto() => ButtonWidget(
       text: "Editar",
       onClicked: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => EditarPerfil()),
-        );
+        Navigator.pushNamed(context, "/Editar");
+      });
+
+  Widget eliminarContacto() => ButtonWidget(
+      text: "Eliminar",
+      onClicked: () {
+        Metodos.eliminarContacto(contactoActual);
+        Navigator.pushNamed(context, "/");
       });
 
   Widget construirInformacion(Contacto contacto) => Column(
