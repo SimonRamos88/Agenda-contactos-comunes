@@ -89,8 +89,11 @@ class Metodos {
     }
   }
 
-  static dynamic agregarContacto() {
-    // _contactos.add(agregar);
+  static void CrearContacto(String nombre, int tef1, int tef2, String comp, String email, String linkfoto) {
+
+    Contacto nuevo = Contacto(nombre, tef1, tef2, comp, email, linkfoto);
+    contactos.add(nuevo);
+    print(nuevo.Nombre);
   }
 
 //aqui en editar contacto lo que hacemos es modificar el contacto, sacarlo de la lista y
