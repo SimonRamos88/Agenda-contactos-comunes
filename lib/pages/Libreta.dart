@@ -37,7 +37,7 @@ class _MenuContactosState extends State<MenuContactos> {
       Metodos.contactoActual = c;
       print("Boton presionado, yendo a contacto");
 
-      Navigator.pushReplacementNamed(context, "/Ver");
+      Navigator.pushNamed(context, "/Ver");
     });
   }
 
@@ -146,7 +146,7 @@ class _MenuContactosState extends State<MenuContactos> {
                */
               margin: const EdgeInsets.only(top: 0.0, bottom: 0.0),
               padding: const EdgeInsets.all(25),
-              height: 600,
+              height: 640,
               width: 392,
               decoration: BoxDecoration(
                   // color: Colors.deepPurple.shade100,
