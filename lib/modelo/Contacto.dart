@@ -2,7 +2,6 @@
 class Contacto {
   late String linkFoto;
   late String nombre;
-  String apellido = "random";
   late String compania;
   late int telefono1;
   late int telefono2;
@@ -17,10 +16,6 @@ class Contacto {
 
   String get Nombre {
     return nombre;
-  }
-
-  String get Apellido {
-    return apellido;
   }
 
   String get Email {
@@ -54,7 +49,7 @@ class Contacto {
   @override
   String toString() {
     String cad =
-        "Nombre: $nombre, Apellidos: $apellido, Compañía: $compania, Telefono 1: $telefono1, Telefono 2: $telefono2,  Email: $email";
+        "Nombre: $nombre, Compañía: $compania, Telefono 1: $telefono1, Telefono 2: $telefono2,  Email: $email";
 
     return cad;
   }

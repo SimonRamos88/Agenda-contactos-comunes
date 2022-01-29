@@ -20,11 +20,11 @@ class MenuContactos extends StatefulWidget {
 }
 
 class _MenuContactosState extends State<MenuContactos> {
-  Color color_interfaz = Color(0xff9AD0EC);
-  Color color_interfazGrueso = Color(0xff1572A1);
-  Color color_letra = Color(0xffEFDAD7);
-  Color color_fondo = Color(0xffE3BEC6);
-
+  Color color_interfaz = Color(0xff7676CC);
+  Color color_interfazGrueso = Color(0xff1E1E34);
+  Color color_letra = Color(0xffE4E4E4);
+  Color color_fondo = Color(0xffE4E4E4);
+  
   List<Contacto> _contactos = Metodos.contactos;
 
   void irAContacto(Contacto c) {
@@ -35,20 +35,16 @@ class _MenuContactosState extends State<MenuContactos> {
       Metodos.contactoActual = c;
       print("Boton presionado, yendo a contacto");
 
-      Navigator.pushNamed(context, "/Ver");
+      Navigator.pushReplacementNamed(context, "/Ver");
     });
   }
 
-  void cambiarPantalla(int tabIndex) {
-    switch (tabIndex) {
-      case 0:
-        //Navigator.pushNamed(context, "/");
-        break;
-      case 1:
-        Navigator.pushNamed(context, "/Crear");
-        break;
-    }
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the widget tree.
+    super.dispose();
   }
+
 
   void _mostrarAjustes(BuildContext context) {
     showDialog(
@@ -62,16 +58,19 @@ class _MenuContactosState extends State<MenuContactos> {
             actions: <Widget>[
               FlatButton(
                   onPressed: () => Navigator.pop(context),
-                  color: color_interfaz,
-                  child: Text("Exportar Contactos")),
+                  color: color_interfazGrueso,
+                  child: const Text("Exportar Contactos", 
+                    style: TextStyle(color: Colors.white) ) ),
               FlatButton(
-                  color: color_interfaz,
+                  color: color_interfazGrueso,
                   onPressed: () => Navigator.pop(context),
-                  child: Text("Importar Contactos")),
+                  child: const Text("Exportar Contactos", 
+                    style: TextStyle(color: Colors.white) )),
               FlatButton(
-                  color: color_interfaz,
+                  color: color_interfazGrueso,
                   onPressed: () => Navigator.pop(context),
-                  child: Text("Volver")),
+                  child: const Text("Exportar Contactos", 
+                    style: TextStyle(color: Colors.white) )),
             ],
           );
         });
@@ -123,7 +122,7 @@ class _MenuContactosState extends State<MenuContactos> {
                */
               margin: const EdgeInsets.only(top: 0.0, bottom: 0.0),
               padding: const EdgeInsets.all(25),
-              height: 690,
+              height: 500,
               width: 392,
               decoration: BoxDecoration(
                   // color: Colors.deepPurple.shade100,
@@ -145,8 +144,8 @@ class _MenuContactosState extends State<MenuContactos> {
                       margin: EdgeInsets.only(top: 5.0),
                       decoration: BoxDecoration(
                           color: color_interfaz,
-                          border: Border.all(width: 2, color: Colors.amber),
-                          borderRadius: BorderRadius.circular(2)),
+                          //border: Border.all(width: 2, color: Colors.amber),
+                          borderRadius: BorderRadius.circular(13)),
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [
@@ -229,10 +228,10 @@ class _MenuContactosState extends State<MenuContactos> {
       //en todas las pantallas
 
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: color_interfaz,
+        backgroundColor: color_interfazGrueso,
         elevation: 4,
         selectedIconTheme: const IconThemeData(color: Colors.white, size: 40),
-
+        unselectedLabelStyle: const TextStyle(color: Colors.white),
         /**
          * Como hacer un bottom navigation bar tomado de:
          * https://blog.logrocket.com/how-to-build-a-bottom-navigation-bar-in-flutter/#:~:text=BottomNavigationBar%20is%20a%20widget%20that,navigate%20to%20a%20given%20page.
@@ -248,22 +247,25 @@ class _MenuContactosState extends State<MenuContactos> {
 */
           BottomNavigationBarItem(
               icon: Icon(Icons.import_contacts,
-                  color: Colors.black,
+                  color: Colors.white,
                   size: 30.0,
                   semanticLabel: 'Lista de contactos'),
-              label: "Contactos"),
+              label: "Contactos",
+          ),
           BottomNavigationBarItem(
               icon: Icon(Icons.person_add,
-                  color: Colors.black,
+                  color: Colors.white,
                   size: 30.0,
                   semanticLabel: 'Añadir a contacto'),
-              label: "Añadir"),
+              label: "añadir",
+          )//"Añadir"),
         ],
-        onTap: cambiarPantalla,
+        onTap: (int tapIndex) {tapIndex == 1? Navigator.pushReplacementNamed(context, "/Crear"): null; },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       //Pendiente ponerle interactividad xdd
       floatingActionButton: FloatingActionButton(
+        backgroundColor: color_interfaz,
         onPressed: () => _mostrarAjustes(context),
         tooltip: 'Increment',
         child: const Icon(Icons.build_rounded),

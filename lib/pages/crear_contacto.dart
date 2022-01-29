@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:agenda/datos/Paletas.dart';
 import 'package:agenda/Logica/Metodos.dart';
+import 'dart:io'  show File;
+import 'dart:async';
+import 'package:image_picker/image_picker.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:path_provider/path_provider.dart';
+
+import '../camara.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,10 +22,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
           primarySwatch: Paletas.primaryWhite,
-          textTheme: const TextTheme(button: TextStyle(color: Colors.black)),
+          textTheme: const TextTheme(button: TextStyle(color: Colors.white)),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-              selectedLabelStyle: TextStyle(color: Colors.black),
-              unselectedLabelStyle: TextStyle(color: Colors.black))),
+              selectedLabelStyle: TextStyle(color: Colors.white),
+              unselectedLabelStyle: TextStyle(color: Colors.white))),
       home: PrincipalPage(),
     );
   }
@@ -33,16 +40,25 @@ class PrincipalPage extends StatefulWidget {
 }
 
 class _PrincipalPageState extends State<PrincipalPage> {
+
+  Color color_interfaz = Color(0xff7676CC);
+  Color color_interfazGrueso = Color(0xff1E1E34);
+  Color color_letra = Color(0xffE4E4E4);
+  Color color_fondo = Color(0xffE4E4E4);
+
   String nombre = "";
-  String apellido = "";
+  String email = "";
   String compania = "";
   int num1 = 0;
   int num2 = 0;
 
   bool _subido = false;
 
+  var widgetCamra = FotoUsuario(); 
+
   final keyform = GlobalKey<FormState>();
 
+   
   subir() {
     setState(() => _subido = true);
     if (keyform.currentState!.validate()) {
@@ -57,10 +73,11 @@ class _PrincipalPageState extends State<PrincipalPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.tittle),
+        backgroundColor: color_interfazGrueso,
       ),
       body: Center(
           child: Container(
-              color: const Color(0xffB4C2DD),
+              color: color_fondo,
               padding: const EdgeInsets.all(20),
               child: Form(
                 key: keyform,
@@ -68,7 +85,26 @@ class _PrincipalPageState extends State<PrincipalPage> {
                   children: <Widget>[
                     Row(
                       children: [
-                        const Icon(Icons.person, size: 150),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(left:10, right: 20, top: 10),
+                              //color: Colors.black,
+                              width: 130,
+                              height: 180,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: color_interfaz,
+                                  width: 10,
+                                ),
+                                borderRadius: BorderRadius.circular(13)
+                            ),
+                            child: widgetCamra
+                                                                          
+                          )
+                          ]
+                        ),
                         Expanded(
                             child: Column(
                                 mainAxisAlignment:
@@ -86,7 +122,8 @@ class _PrincipalPageState extends State<PrincipalPage> {
                                       labelText: "Nombre",
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(12)),
+                                              BorderRadius.circular(12)
+                                      ),
                                       hintStyle:
                                           TextStyle(color: Colors.white)),
                                   onChanged: (text) =>
@@ -99,20 +136,20 @@ class _PrincipalPageState extends State<PrincipalPage> {
                               TextFormField(
                                   initialValue: "",
                                   validator: (text) {
-                                    if (apellido.isEmpty) {
+                                    if (email.isEmpty) {
                                       print("Soy el validatorV2");
                                       return "Ingrese un valor";
                                     }
                                   },
                                   decoration: InputDecoration(
-                                    labelText: "Apellido",
+                                    labelText: "Email",
                                     border: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(12)),
                                     hintStyle: TextStyle(color: Colors.white),
                                   ),
                                   onChanged: (text) =>
-                                      setState(() => apellido = text),
+                                      setState(() => email = text),
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction
                                   // _subido ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
@@ -186,31 +223,35 @@ class _PrincipalPageState extends State<PrincipalPage> {
               ))),
 
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: color_interfazGrueso,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.import_contacts, color: Colors.black),
+              icon: Icon(Icons.import_contacts, color: Colors.white),
               label:
                   "Contactos " //Text("Contactos", style: TextStyle(color:Colors.black) )
               ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person_add, color: Colors.black),
+              icon: Icon(Icons.person_add, color: Colors.white),
               label: "Añadir")
         ],
         onTap: (int tapIndex) {
-          tapIndex == 0 ? Navigator.pushNamed(context, "/") : null;
+          tapIndex == 0 ? Navigator.pushReplacementNamed(context, "/") : null;
         },
       ),
 
       floatingActionButton: FloatingActionButton(
+        backgroundColor: color_interfaz,
         //Falta crear el contacto, y ponerlo en este metodo
         onPressed: () {
-          if (nombre.isNotEmpty && apellido.isNotEmpty && compania.isNotEmpty) {
+          if (nombre.isNotEmpty && email.isNotEmpty && compania.isNotEmpty) {
             subir();
+            
             print("Entro");
+           
             Metodos.CrearContacto(
-                nombre, num1, num2, compania, apellido, "slakla");
-            print(Metodos.contactos);
-            Navigator.pushNamed(context, "/");
+                nombre, num1, num2, compania, email, "https://www.asofiduciarias.org.co/wp-content/uploads/2018/06/sin-foto.png");
+
+            Navigator.pushReplacementNamed(context, "/");
           } else {
             print("No entro");
             //return null;

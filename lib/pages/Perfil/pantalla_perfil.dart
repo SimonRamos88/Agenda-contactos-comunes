@@ -16,13 +16,12 @@ class PaginaPerfil extends StatefulWidget {
 class _PerfilEstado extends State<PaginaPerfil> {
   // final contactoActual = Metodos.contactoActual;
 
-  Color color_interfaz = Color(0xff9AD0EC);
   dynamic contactoActual = Metodos.contactoActual;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: color_interfaz,
+      backgroundColor: Color(0xffE4E4E4),
       appBar: buildAppBar(context),
       body: ListView(
         physics: const BouncingScrollPhysics(),
@@ -58,7 +57,7 @@ class _PerfilEstado extends State<PaginaPerfil> {
           ),
           Text(
             contacto.email,
-            style: const TextStyle(color: Colors.grey),
+            style: const TextStyle(color: Colors.black),
           )
         ],
       );
@@ -66,15 +65,21 @@ class _PerfilEstado extends State<PaginaPerfil> {
   Widget editarContacto() => ButtonWidget(
       text: "Editar",
       onClicked: () {
-        Navigator.pushNamed(context, "/Editar");
+        Navigator.pushReplacementNamed(context, "/Editar");
       });
 
   Widget eliminarContacto() => ButtonWidget(
       text: "Eliminar",
       onClicked: () {
         Metodos.eliminarContacto(contactoActual);
-        Navigator.pushNamed(context, "/");
+        //Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+        Navigator.pushReplacementNamed(context, "/");
       });
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the widget tree.
+    super.dispose();
+  }
 
   Widget construirInformacion(Contacto contacto) => Column(
         crossAxisAlignment: CrossAxisAlignment.center,

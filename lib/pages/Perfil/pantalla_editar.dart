@@ -18,9 +18,9 @@ class _EditarPerfilEstado extends State<EditarPerfil> {
   Color color_interfaz = Color(0xff9AD0EC);
   Color color_interfazGrueso = Color(0xff1572A1);
   Color color_letra = Color(0xffEFDAD7);
-  Color color_fondo = Color(0xffE3BEC6);
+  Color color_fondo = Color(0xffE4E4E4);
 
-  Contacto contacto = Metodos.ContactoActual;
+  Contacto contacto = Metodos.contactoActual;
 
   late TextEditingController controllernombreCompleto;
   late TextEditingController controlleremail;
@@ -39,7 +39,7 @@ class _EditarPerfilEstado extends State<EditarPerfil> {
         TextEditingController(text: contacto.telefono2.toString());
     controllercompania = TextEditingController(text: contacto.compania);
     return Scaffold(
-      backgroundColor: color_interfaz,
+      backgroundColor: color_fondo,
       appBar: buildAppBar(context),
       body: ListView(
         physics: const BouncingScrollPhysics(),
@@ -124,7 +124,6 @@ class _EditarPerfilEstado extends State<EditarPerfil> {
             text: contacto.nombre,
             onChanged: (nombre) {},
           ),
-
           
           const SizedBox(height: 24),
           TextFieldWidget(
@@ -185,7 +184,8 @@ class _EditarPerfilEstado extends State<EditarPerfil> {
         print("Esta va para juan");
         //Crear contacto / editarlo
         //Metodos.EditarContacto(editable)
-        Navigator.pushReplacementNamed(context, "/");
+        Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+
         //Navigator.of(context).push(
         //  MaterialPageRoute(builder: (context) => PaginaPerfil()),
         //);

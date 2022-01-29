@@ -1,6 +1,3 @@
-// ignore: file_names
-// ignore: file_names
-// ignore_for_file: non_constant_identifier_names, file_names
 
 import '../modelo/Contacto.dart';
 import 'dart:async';
