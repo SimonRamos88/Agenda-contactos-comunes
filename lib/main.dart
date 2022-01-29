@@ -7,8 +7,9 @@ import 'pages/Libreta.dart';
 import 'pages/crear_contacto.dart';
 import 'pages/Perfil/pantalla_editar.dart';
 import 'pages/Perfil/pantalla_perfil.dart';
+import 'package:agenda/modelo/Persistencia.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -19,16 +20,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: "/",
-      routes: {
-        "/": (BuildContext context) => MenuContactos(),
-        "/Crear": (BuildContext context) => PrincipalPage(),
-        "/Editar": (BuildContext context) => EditarPerfil(),
-        "/Ver": (BuildContext context) => PaginaPerfil()
-      }
+        debugShowCheckedModeBanner: false,
+        initialRoute: "/",
+        routes: {
+          "/": (BuildContext context) => MenuContactos(),
+          "/Crear": (BuildContext context) => PrincipalPage(),
+          "/Editar": (BuildContext context) => EditarPerfil(),
+          "/Ver": (BuildContext context) => PaginaPerfil()
+        }
 
         //home: MenuContactos(),
-    );
+        );
   }
 }

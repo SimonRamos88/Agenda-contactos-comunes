@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../modelo/Contacto.dart';
 import 'package:agenda/Logica/Metodos.dart';
-
+import 'package:agenda/modelo/Persistencia.dart';
+import 'dart:convert';
 //import 'package:agenda/Pantallas/Perfil/pantalla_perfil.dart';
 import '../main.dart';
 
@@ -24,7 +26,7 @@ class _MenuContactosState extends State<MenuContactos> {
   Color color_interfazGrueso = Color(0xff1E1E34);
   Color color_letra = Color(0xffE4E4E4);
   Color color_fondo = Color(0xffE4E4E4);
-  
+
   List<Contacto> _contactos = Metodos.contactos;
 
   void irAContacto(Contacto c) {
@@ -45,6 +47,27 @@ class _MenuContactosState extends State<MenuContactos> {
     super.dispose();
   }
 
+  void _convertirJSON() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String jsonContactos = jsonEncode(Metodos.contactos);
+
+    setState(() {
+      prefs.setString("uxiono", jsonContactos);
+      print("Datos subidos con exito");
+    });
+  }
+
+  void _decodJSON() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      String json_contactos = prefs.getString("uxiono") ?? "";
+      var listaConts_js = jsonDecode(json_contactos) as List;
+      List<Contacto> contactosDeNuevo =
+          listaConts_js.map((index) => Contacto.fromJson(index)).toList();
+      Metodos.contactos = contactosDeNuevo;
+      print("Datos descargados con exito");
+    });
+  }
 
   void _mostrarAjustes(BuildContext context) {
     showDialog(
@@ -57,20 +80,21 @@ class _MenuContactosState extends State<MenuContactos> {
             content: Text("Selecciona una de las opciones por favor: "),
             actions: <Widget>[
               FlatButton(
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => _convertirJSON(),
                   color: color_interfazGrueso,
-                  child: const Text("Exportar Contactos", 
-                    style: TextStyle(color: Colors.white) ) ),
+                  child: const Text("Guardar Contactos",
+                      style: TextStyle(color: Colors.white))),
               FlatButton(
                   color: color_interfazGrueso,
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text("Exportar Contactos", 
-                    style: TextStyle(color: Colors.white) )),
+                  onPressed: () => _decodJSON(),
+                  child: const Text("Traer Contactos",
+                      style: TextStyle(color: Colors.white))),
               FlatButton(
                   color: color_interfazGrueso,
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text("Exportar Contactos", 
-                    style: TextStyle(color: Colors.white) )),
+                  onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                      context, "/", (route) => false),
+                  child: const Text("Volver",
+                      style: TextStyle(color: Colors.white))),
             ],
           );
         });
@@ -122,7 +146,7 @@ class _MenuContactosState extends State<MenuContactos> {
                */
               margin: const EdgeInsets.only(top: 0.0, bottom: 0.0),
               padding: const EdgeInsets.all(25),
-              height: 500,
+              height: 600,
               width: 392,
               decoration: BoxDecoration(
                   // color: Colors.deepPurple.shade100,
@@ -246,21 +270,25 @@ class _MenuContactosState extends State<MenuContactos> {
               label: "Yo"),
 */
           BottomNavigationBarItem(
-              icon: Icon(Icons.import_contacts,
-                  color: Colors.white,
-                  size: 30.0,
-                  semanticLabel: 'Lista de contactos'),
-              label: "Contactos",
+            icon: Icon(Icons.import_contacts,
+                color: Colors.white,
+                size: 30.0,
+                semanticLabel: 'Lista de contactos'),
+            label: "Contactos",
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person_add,
-                  color: Colors.white,
-                  size: 30.0,
-                  semanticLabel: 'Añadir a contacto'),
-              label: "añadir",
-          )//"Añadir"),
+            icon: Icon(Icons.person_add,
+                color: Colors.white,
+                size: 30.0,
+                semanticLabel: 'Añadir a contacto'),
+            label: "añadir",
+          ) //"Añadir"),
         ],
-        onTap: (int tapIndex) {tapIndex == 1? Navigator.pushReplacementNamed(context, "/Crear"): null; },
+        onTap: (int tapIndex) {
+          tapIndex == 1
+              ? Navigator.pushReplacementNamed(context, "/Crear")
+              : null;
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       //Pendiente ponerle interactividad xdd
