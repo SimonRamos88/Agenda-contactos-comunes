@@ -73,7 +73,7 @@ class _PerfilEstado extends State<PaginaPerfil> {
       onClicked: () {
         Metodos.eliminarContacto(contactoActual);
         //Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
-        Navigator.pushReplacementNamed(context, "/");
+        Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);;
       });
   @override
   void dispose() {

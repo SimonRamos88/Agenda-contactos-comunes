@@ -235,7 +235,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
               label: "Añadir")
         ],
         onTap: (int tapIndex) {
-          tapIndex == 0 ? Navigator.pushReplacementNamed(context, "/") : null;
+          tapIndex == 0 ? Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false) : null;
         },
       ),
 
@@ -251,7 +251,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
             Metodos.CrearContacto(
                 nombre, num1, num2, compania, email, "https://www.asofiduciarias.org.co/wp-content/uploads/2018/06/sin-foto.png");
 
-            Navigator.pushReplacementNamed(context, "/");
+            Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
           } else {
             print("No entro");
             //return null;
