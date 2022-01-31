@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../modelo/Contacto.dart';
 import 'package:agenda/Logica/Metodos.dart';
-import 'package:agenda/modelo/Persistencia.dart';
+
 import 'dart:convert';
 //import 'package:agenda/Pantallas/Perfil/pantalla_perfil.dart';
 import '../main.dart';
@@ -120,7 +120,6 @@ class _MenuContactosState extends State<MenuContactos> {
           //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             //En este primer container va la cabecera de la página
-           
 
             //En el segundo container la idea es poner una list view con todos los contactos
             Container(
@@ -132,9 +131,7 @@ class _MenuContactosState extends State<MenuContactos> {
               padding: const EdgeInsets.all(25),
               height: 640,
               width: 392,
-              decoration: BoxDecoration(
-                 
-                  borderRadius: BorderRadius.circular(2)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(2)),
               //Aqui en el child deben ir los contactos xd
               child: ListView(
                 //cambia la direccion de scroll
@@ -170,8 +167,6 @@ class _MenuContactosState extends State<MenuContactos> {
                                   height: 60,
                                   fit: BoxFit.cover),
                             ),
-
-
                           ),
                           //container del texto
                           Container(
@@ -192,10 +187,7 @@ class _MenuContactosState extends State<MenuContactos> {
                       ));
                 }),
               ),
-          
             )
-
-          
           ],
         ),
       ),
@@ -213,7 +205,6 @@ class _MenuContactosState extends State<MenuContactos> {
          * https://blog.logrocket.com/how-to-build-a-bottom-navigation-bar-in-flutter/#:~:text=BottomNavigationBar%20is%20a%20widget%20that,navigate%20to%20a%20given%20page.
          */
         items: const <BottomNavigationBarItem>[
-        
           BottomNavigationBarItem(
             icon: Icon(Icons.import_contacts,
                 color: Colors.white,
@@ -236,7 +227,7 @@ class _MenuContactosState extends State<MenuContactos> {
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
-   
+
       floatingActionButton: FloatingActionButton(
         backgroundColor: color_interfaz,
         onPressed: () => _mostrarAjustes(context),
