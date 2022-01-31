@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../modelo/Contacto.dart';
 import 'package:agenda/Logica/Metodos.dart';
-import 'package:agenda/modelo/Persistencia.dart';
+
 import 'dart:convert';
 //import 'package:agenda/Pantallas/Perfil/pantalla_perfil.dart';
 import '../main.dart';
@@ -120,23 +120,6 @@ class _MenuContactosState extends State<MenuContactos> {
           //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             //En este primer container va la cabecera de la página
-            /*
-            Container(
-              margin: const EdgeInsets.only(top: 50.0),
-              padding: const EdgeInsets.all(25),
-              height: 100,
-              width: 380,
-              child: Text(
-                "Contactos ${_contactos.length}",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontStyle: FontStyle.italic, fontSize: 50),
-              ),
-              decoration: BoxDecoration(
-                  color: color_interfaz,
-                  border: Border.all(color: Colors.black, width: 2),
-                  borderRadius: BorderRadius.circular(10)),
-            ),
-            */
 
             //En el segundo container la idea es poner una list view con todos los contactos
             Container(
@@ -148,10 +131,7 @@ class _MenuContactosState extends State<MenuContactos> {
               padding: const EdgeInsets.all(25),
               height: 640,
               width: 392,
-              decoration: BoxDecoration(
-                  // color: Colors.deepPurple.shade100,
-                  // border: Border.all(color: Colors.yellow.shade300, width: 1),
-                  borderRadius: BorderRadius.circular(2)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(2)),
               //Aqui en el child deben ir los contactos xd
               child: ListView(
                 //cambia la direccion de scroll
@@ -187,17 +167,6 @@ class _MenuContactosState extends State<MenuContactos> {
                                   height: 60,
                                   fit: BoxFit.cover),
                             ),
-
-/*
-                        Container(
-                          decoration: BoxDecoration(
-                              //Pendiente: mirar si dejamos el border o no
-                              //border: Border.all(color: Colors.black, width: 1),
-                              borderRadius: BorderRadius.circular(3)),
-                          margin: EdgeInsets.only(left: 10),
-                          child: Image.network("${_contactos[index].linkFoto}",
-                              width: 60, height: 20, fit: BoxFit.scaleDown),
-*/
                           ),
                           //container del texto
                           Container(
@@ -218,32 +187,7 @@ class _MenuContactosState extends State<MenuContactos> {
                       ));
                 }),
               ),
-              /*
-              Imagen de prueba ke no kunda el panico
-              Image.network(
-                "https://pbs.twimg.com/ext_tw_video_thumb/1403401316681097220/pu/img/7dt7pn3SgtUvWVKS.jpg",
-                width: 200,
-                height: 300,
-                fit: BoxFit.fill,
-                
-              ),
-              */
             )
-
-            /*
-            Positioned(
-                top: 1000,
-                child:),
-                */
-            /*
-          const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            */
           ],
         ),
       ),
@@ -261,14 +205,6 @@ class _MenuContactosState extends State<MenuContactos> {
          * https://blog.logrocket.com/how-to-build-a-bottom-navigation-bar-in-flutter/#:~:text=BottomNavigationBar%20is%20a%20widget%20that,navigate%20to%20a%20given%20page.
          */
         items: const <BottomNavigationBarItem>[
-          /*
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person,
-                  color: Colors.black,
-                  size: 30.0,
-                  semanticLabel: 'Persona en recuadro'),
-              label: "Yo"),
-*/
           BottomNavigationBarItem(
             icon: Icon(Icons.import_contacts,
                 color: Colors.white,
@@ -291,7 +227,7 @@ class _MenuContactosState extends State<MenuContactos> {
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
-      //Pendiente ponerle interactividad xdd
+
       floatingActionButton: FloatingActionButton(
         backgroundColor: color_interfaz,
         onPressed: () => _mostrarAjustes(context),

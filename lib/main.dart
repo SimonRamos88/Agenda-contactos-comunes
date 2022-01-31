@@ -7,7 +7,6 @@ import 'pages/Libreta.dart';
 import 'pages/crear_contacto.dart';
 import 'pages/Perfil/pantalla_editar.dart';
 import 'pages/Perfil/pantalla_perfil.dart';
-import 'package:agenda/modelo/Persistencia.dart';
 
 void main() async {
   runApp(const MyApp());

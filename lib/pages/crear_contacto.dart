@@ -261,30 +261,6 @@ class _PrincipalPageState extends State<PrincipalPage> {
         child: const Icon(Icons.add),
       ),
 
-      /*
-      bottomNavigationBar: BottomNavigationBar(items: const [
-        BottomNavigationBarItem(
-            backgroundColor: Colors.pink,
-            icon: Icon(Icons.book_outlined, color: Colors.black),
-            //label: "xd",
-            label:
-                "Contactos " //Text("Contactos", style: TextStyle(color:Colors.black) )
-            ),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.book_online, color: Colors.black),
-            //activeIcon: Icon(Icons.book, color: Colors.black),
-            label: "Añadir")
-      ]),
-      */
-      //floatingActionButton: FloatingActionButton(
-      //Falta crear el contacto, y ponerlo en este metodo
-
-/*
-        onPressed: Metodos.agregarContacto(),
-        tooltip: 'Agregar',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-*/
     );
   }
 }
