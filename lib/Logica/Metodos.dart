@@ -3,41 +3,7 @@ import '../modelo/Contacto.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:path_provider/path_provider.dart';
 
-class AlmacenamientoAndroid {
-  //Creamos  la clase
-  //Este metodo futuro nos trae el path de la carpeta documentos
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
-
-//con el path, creamos el archivo deseado
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File("$path/contactos.txt");
-  }
-
-  //Ahora lo leemos
-  Future<int> readCounter() async {
-    try {
-      final file = await _localFile;
-      //Leemos el archivo como una String XDD
-      String contents = await file.readAsString();
-      return int.parse(contents);
-    } catch (e) {
-      return 0;
-    }
-  }
-
-//terminar de buscar para guardar datos en andrir
-  Future<File> writeCounter(String datos) async {
-    final file = await _localFile;
-
-    return file.writeAsString(datos);
-  }
-}
 
 class Metodos {
   static late Contacto ContactoActual;
