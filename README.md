@@ -14,10 +14,10 @@ Además de poder tener listas de contactos, permite importarlas y exportarlas.
 
 ## Capturas de la Aplicación
 
-![Interfaz principal](../Agenda-contactos-comunes/assets/Captura%20de%20pantalla%202022-07-22%20131626.png)
+![Interfaz principal](https://drive.google.com/file/d/1QAsckQoxbTcEdK8NdBEypbrUvMFM07vx/view?usp=sharing)
 
-![Viendo un contacto](../Agenda-contactos-comunes/assets/Captura%20de%20pantalla%202022-07-22%20131721.png)
+![Viendo un contacto](https://drive.google.com/file/d/1ej0HhZzJwXMqD4uDyC7YQVvuN8uNJUEi/view?usp=sharing)
 
-![Guardando Datos](../Agenda-contactos-comunes/assets/Captura%20de%20pantalla%202022-07-22%20131741.png)
+![Guardando Datos](https://drive.google.com/file/d/1BkbFjIb81M5moBz1e741wbES6wDzgxoF/view?usp=sharing)
 
 
