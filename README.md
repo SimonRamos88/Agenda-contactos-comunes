@@ -14,10 +14,12 @@ Además de poder tener listas de contactos, permite importarlas y exportarlas.
 
 ## Capturas de la Aplicación
 
-![Interfaz principal](https://drive.google.com/file/d/1QAsckQoxbTcEdK8NdBEypbrUvMFM07vx/view?usp=sharing)
-
-![Viendo un contacto](https://drive.google.com/file/d/1ej0HhZzJwXMqD4uDyC7YQVvuN8uNJUEi/view?usp=sharing)
-
-![Guardando Datos](https://drive.google.com/file/d/1BkbFjIb81M5moBz1e741wbES6wDzgxoF/view?usp=sharing)
 
 
+
+![Interfaz](https://user-images.githubusercontent.com/87251455/180501621-b3cfde85-6735-4d39-bbcf-0a6e02e159d2.png)
+
+![Contactos](https://user-images.githubusercontent.com/87251455/180501647-489c2101-998d-41fe-922b-bbd568fc7ef7.png)
+
+
+![Guardar](https://user-images.githubusercontent.com/87251455/180501710-f05e2a59-2cf0-4a31-bc42-17d456592514.png)
