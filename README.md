@@ -1,16 +1,23 @@
-# agenda
+# Agenda Flutter
+Este es el primer proyecto que hicimos para practicar y utilizar los conocimientos que tenemos en el lenguaje Dart y el framework flutter 😁
 
-A new Flutter project.
+La 'Agenda de contactos comunes' permite utilizarse como una libreta de contactos en la que el usuario puede guardar información como: Nombres, Telefonos, Correos electrónicos y una foto.
 
-## Getting Started
+Además de poder tener listas de contactos, permite importarlas y exportarlas.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Detalles innovadores
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Utilizamos "Shared Preferences", una manera en la cual el sistema Android permite guardar datos en un archivo XML dentro del telefono. Con esto podemos guardar los contactos.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Adicionalmente, convertimos los datos a un JSON, para poder utilizar Shared Preferences.
+
+## Capturas de la Aplicación
+
+![Interfaz principal](../Agenda-contactos-comunes/assets/Captura%20de%20pantalla%202022-07-22%20131626.png)
+
+![Viendo un contacto](../Agenda-contactos-comunes/assets/Captura%20de%20pantalla%202022-07-22%20131721.png)
+
+![Guardando Datos](../Agenda-contactos-comunes/assets/Captura%20de%20pantalla%202022-07-22%20131741.png)
+
+
